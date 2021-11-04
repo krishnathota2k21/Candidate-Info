@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /candidate-info
+
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/candidateinfo
+    username: root
+    password: root
+    initialization-mode: always
+
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
+    show-sql: true
+
