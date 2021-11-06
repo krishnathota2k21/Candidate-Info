@@ -1,5 +1,6 @@
 package com.ivispl.candidate.config;
 
+import com.ivispl.candidate.constants.Constants;
 import com.ivispl.candidate.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import static com.ivispl.candidate.constants.Constants.ROLE_ADMIN;
+import static com.ivispl.candidate.constants.Constants.ROLE_USER;
 
 @Configuration
 @EnableWebSecurity
@@ -44,11 +48,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated()
-                .antMatchers("/").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-//                .antMatchers("/viewUsers").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-//                .antMatchers("/addUser").hasAuthority("ROLE_ADMIN")
-//                .antMatchers("/save").hasAuthority("ROLE_ADMIN")
+        http.authorizeRequests()
+                .antMatchers("/").hasAnyAuthority(ROLE_USER, ROLE_ADMIN)
+                .antMatchers("/viewUsers").hasAnyAuthority(ROLE_USER, ROLE_ADMIN)
+                .antMatchers("/addUser").hasAuthority(ROLE_ADMIN)
+                .antMatchers("/save").hasAuthority(ROLE_ADMIN)
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                     .loginPage("/login")

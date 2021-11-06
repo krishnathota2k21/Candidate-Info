@@ -1,4 +1,4 @@
-package com.ivispl.candidate.entity;
+package com.ivispl.candidate.entity.user;
 
 import lombok.Data;
 

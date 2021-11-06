@@ -1,6 +1,6 @@
 package com.ivispl.candidate.dto;
 
-import com.ivispl.candidate.entity.User;
+import com.ivispl.candidate.entity.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
