@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class PassportDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "issued_date")
@@ -35,6 +35,6 @@ public class PassportDetails {
     @Column(name = "visa_expiry_date")
     private LocalDate visaExpiryDate;
 
-    @OneToOne(mappedBy = "passportDetails", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private CandidateInfo candidateInfo;
 }

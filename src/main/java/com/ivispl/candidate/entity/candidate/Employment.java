@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class Employment {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "current_company")

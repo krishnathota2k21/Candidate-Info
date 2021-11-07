@@ -1,7 +1,6 @@
 package com.ivispl.candidate.controller;
 
 import com.ivispl.candidate.dto.CandidateInfoDto;
-import com.ivispl.candidate.entity.candidate.CandidateInfo;
 import com.ivispl.candidate.error.CandidateNotFoundException;
 import com.ivispl.candidate.service.CandidateInfoService;
 import org.springframework.stereotype.Controller;
@@ -9,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
+
+import static com.ivispl.candidate.constants.Constants.INDEX;
 
 @Controller
 @RequestMapping("/candidate")
@@ -20,17 +21,17 @@ public class CandidateInfoController {
     }
 
     @PostMapping
-    public String addCandidateInfo(@ModelAttribute("candidateInfo") CandidateInfoDto candidateInfoDto, Model model) {
+    public String addCandidateInfo(@RequestBody CandidateInfoDto candidateInfoDto, Model model) {
         boolean success = candidateInfoService.addCandidateInfo(candidateInfoDto);
         if (success) {
             model.addAttribute("successMessage", "Candidate information successfully added.");
         }
-        return "";
+        return INDEX;
 
     }
 
     @GetMapping
-    public String viewCandidateInfo(@ModelAttribute("panNumber") String panNumber, Model model) throws CandidateNotFoundException {
+    public String viewCandidateInfo(@RequestParam("panNumber") String panNumber, Model model) throws CandidateNotFoundException {
         CandidateInfoDto candidateInfoDto = candidateInfoService.findDetails(panNumber);
         if (Objects.nonNull(candidateInfoDto)) {
             model.addAttribute("successMessage", "Candidate information successfully added.");
@@ -38,7 +39,7 @@ public class CandidateInfoController {
         } else {
             model.addAttribute("errorMessage", "candidate info not found: "+panNumber);
         }
-        return "candidate-info";
+        return INDEX;
     }
 
     @PutMapping("/{id}")
@@ -47,7 +48,7 @@ public class CandidateInfoController {
                                        Model model) {
         CandidateInfoDto updatedCandidateInfoDto = candidateInfoService.updateCandidateInfo(candidateInfoId, candidateInfoDto, model);
         model.addAttribute("candidateInfo", updatedCandidateInfoDto);
-        return "";
+        return INDEX;
     }
 
     @DeleteMapping("/{id}")

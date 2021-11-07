@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 public class CandidateInfo {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "first_name")
@@ -30,17 +30,17 @@ public class CandidateInfo {
     @Column(name = "mobile_number")
     private BigInteger mobileNumber;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "candidateInfo")
-    private List<Education> educationDetails;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "candidateInfo")
-    private List<Employment> employmentHistory;
-
     @Column(name = "pan_number")
     private String panNumber;
 
     @Column(name = "aadhaar_number")
     private BigInteger aadhaarNumber;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "candidateInfo")
+    private List<Education> educationDetails;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "candidateInfo")
+    private List<Employment> employmentHistory;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "candidateInfo")
     private PassportDetails passportDetails;
@@ -49,15 +49,12 @@ public class CandidateInfo {
     private List<EmploymentOffer> employmentOffers;
 
     @CreatedDate
-    @Column(name = "created_date")
     private LocalDateTime createdDate;
 
     @LastModifiedDate
-    @Column(name = "updated_date")
     private LocalDateTime updatedDate;
 
     @LastModifiedBy
-    @Column(name = "modified_by")
     private String modifiedBy;
 
 }

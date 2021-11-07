@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -20,6 +21,9 @@ public class CandidateInfoDto {
     private BigInteger aadhaarNumber;
     private PassportDetailsDto passportDetails;
     private List<EmploymentOfferDto> employmentOffers;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
+    private String modifiedBy;
 
     @Data
     public static class EducationDto {
