@@ -1,5 +1,6 @@
-package com.ivispl.candidate.entity;
+package com.ivispl.candidate.entity.user;
 
+import com.ivispl.candidate.entity.user.User;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,5 +18,5 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private List< User > users;
+    private List<User> users;
 }

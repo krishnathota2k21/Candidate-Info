@@ -1,6 +1,6 @@
 package com.ivispl.candidate.reposiroty;
 
-import com.ivispl.candidate.entity.User;
+import com.ivispl.candidate.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

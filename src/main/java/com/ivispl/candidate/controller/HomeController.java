@@ -1,8 +1,8 @@
 package com.ivispl.candidate.controller;
 
 import com.ivispl.candidate.dto.UserDto;
-import com.ivispl.candidate.entity.Role;
-import com.ivispl.candidate.entity.User;
+import com.ivispl.candidate.entity.user.Role;
+import com.ivispl.candidate.entity.user.User;
 import com.ivispl.candidate.reposiroty.RoleRepository;
 import com.ivispl.candidate.reposiroty.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -54,4 +54,11 @@ public class HomeController {
         userRepository.save(user);
         return "redirect:viewUsers";
     }
+
+    @GetMapping("/login")
+    public String viewLoginPage() {
+        return "login";
+    }
+
+
 }

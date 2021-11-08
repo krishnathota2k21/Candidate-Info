@@ -1,7 +1,7 @@
 package com.ivispl.candidate.service;
 
 import com.ivispl.candidate.dto.MyUserDetails;
-import com.ivispl.candidate.entity.User;
+import com.ivispl.candidate.entity.user.User;
 import com.ivispl.candidate.reposiroty.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
