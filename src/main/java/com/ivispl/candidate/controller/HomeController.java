@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -43,8 +44,13 @@ public class HomeController {
     }
 
     @PostMapping("/save")
-    public String saveUser(@ModelAttribute UserDto userDto) {
-        userRepository.findByEmail(userDto.getEmail()).ifPresent(user1 -> new Exception(user1.getEmail()+" is already exist."));
+    public String saveUser(@ModelAttribute UserDto userDto, Model model) throws Exception {
+        Optional<User> optionalUser = userRepository.findByEmail(userDto.getEmail());
+        if (optionalUser.isPresent()){
+            log.error("{} is already exist.", userDto.getEmail());
+            model.addAttribute("errorMessage", "email address is already registered.");
+            return "redirect:viewUsers";
+        }
         List<Role> roles = roleRepository.findAllByName("ROLE_USER");
         User user = new User();
         BeanUtils.copyProperties(userDto, user);
