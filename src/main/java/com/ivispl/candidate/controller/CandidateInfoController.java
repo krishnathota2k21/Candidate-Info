@@ -37,7 +37,7 @@ public class CandidateInfoController {
             model.addAttribute("successMessage", "Candidate information successfully added.");
             model.addAttribute("candidateInfo", candidateInfoDto);
         } else {
-            model.addAttribute("errorMessage", "candidate info not found: "+panNumber);
+            model.addAttribute("errorMessage", "candidate info not found of "+panNumber);
         }
         return INDEX;
     }
