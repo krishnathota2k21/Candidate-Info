@@ -23,10 +23,10 @@ public class CandidateInfoService {
     }
 
 
-    public CandidateInfoDto findDetails(String panNumber) throws CandidateNotFoundException {
+    public CandidateInfoDto findDetails(String panNumber) {
         CandidateInfo entity = candidateInfoRepository.findByPanNumber(panNumber);
         if (Objects.isNull(entity)){
-            throw new CandidateNotFoundException();
+            return null;
         }
         return candidateInfoMapper.toDto(entity);
     }
