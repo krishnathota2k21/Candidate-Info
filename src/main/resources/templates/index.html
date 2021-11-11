@@ -344,12 +344,12 @@ outline: none;
         <section class="search-section">
             <div class="container">
                 <div  class="Search-block">
-<!--                    <form th:action="@{/candidate}" method="post">-->
-<!--                        <input type="text" placeholder="Search PanCard Number" class="search-bar" />-->
-<!--                        <button type="submit" class="sub-btn"><i class="fa fa-search"></i></button>-->
-<!--                    </form>-->
-                    <input type="text" placeholder="Search PanCard Number" id="panNumber" class="search-bar" />
-                    <a th:href="@{/candidate(panNumber=${panNumber})}" class="sub-btn"><i class="fa fa-search"></i></a>
+                    <form th:action="@{/candidate}" method="get">
+                        <input th:name="panNumber" type="text" placeholder="Search PanCard Number" class="search-bar" />
+                        <button type="submit" class="sub-btn"><i class="fa fa-search"></i></button>
+                    </form>
+<!--                    <input type="text" placeholder="Search PanCard Number" th:name="panNumber" class="search-bar" />-->
+<!--                    <a th:href="@{/candidate(panNumber=${panNumber})}" class="sub-btn"><i class="fa fa-search"></i></a>-->
 
                 </div>
             </div>
