@@ -47,31 +47,24 @@ public class CandidateInfoController {
      * @param model model
      * @return candidate info to view.
      */
-    @GetMapping("/viewPan")
-    public String viewCandidateInfo(@RequestParam("panNumber") String panNumber, Model model)
-    {
-        //System.out.println("INSIDE");
+    @GetMapping
+    public String viewCandidateInfo(@RequestParam("panNumber") String panNumber, Model model) {
         CandidateInfoDto candidateInfoDto = candidateInfoService.findDetails(panNumber);
-        //System.out.println("INSIDE A");
-        if (Objects.nonNull(candidateInfoDto))
-        {
+        if (Objects.nonNull(candidateInfoDto)) {
             log.info("candidate info found:: {}",candidateInfoDto);
-            //model.addAttribute("successMessage", "Candidate information successfully added.");
-            candidateInfoDto.setFirstName("Rohit");
-
+            model.addAttribute("successMessage", "Candidate information successfully added.");
             model.addAttribute("candidateInfo", candidateInfoDto);
         } else {
             log.info("candidate info not found:: {}",panNumber);
             model.addAttribute("errorMessage", "candidate info not found of "+panNumber);
         }
-
-        return "view-users";
+        return INDEX;
     }
 
     @PutMapping("/{id}")
     public String updateCandidateInfo(@PathVariable("id") Long candidateInfoId,
-                                      @RequestBody CandidateInfoDto candidateInfoDto,
-                                      Model model) {
+                                       @RequestBody CandidateInfoDto candidateInfoDto,
+                                       Model model) {
         CandidateInfoDto updatedCandidateInfoDto = candidateInfoService.updateCandidateInfo(candidateInfoId, candidateInfoDto, model);
         model.addAttribute("candidateInfo", updatedCandidateInfoDto);
         return INDEX;
