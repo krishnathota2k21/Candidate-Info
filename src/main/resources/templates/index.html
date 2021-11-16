@@ -354,12 +354,12 @@ outline: none;
                 </div>
             </div>
         </section>
-
-        <section>
-            <div class="container">
-                <div class="main-block">
-                    <button class="accordion">Candidate Information</button>
-                    <div class="panel">
+        <div th:if="${candidateInfo != null }" >
+            <section>
+                <div class="container">
+                    <div class="main-block">
+                        <button class="accordion">Candidate Information</button>
+                        <div class="panel">
 
                             <div class="accordion-content">
                                 <form>
@@ -367,37 +367,37 @@ outline: none;
 
                                         <div class="col-6  input-block">
                                             <label class="name-field">First Name</label>
-<!--                                            <input type="text">-->
+                                            <!--                                            <input type="text">-->
                                             <label class="input-field" th:text="${candidateInfo.firstName}"></label>
                                         </div>
                                         <div class="col-6  input-block">
                                             <label class="name-field" >Last Name</label>
-<!--                                            <input type="text">-->
+                                            <!--                                            <input type="text">-->
                                             <label class="input-field" th:text="${candidateInfo.lastName}"></label>
                                         </div>
                                         <div class="col-6  input-block">
                                             <label class="name-field">Email</label>
-<!--                                            <input type="text">-->
+                                            <!--                                            <input type="text">-->
                                             <label class="input-field" th:text="${candidateInfo.email}"></label>
                                         </div>
                                         <div class="col-6  input-block">
                                             <label class="name-field">Mobile Number</label>
-<!--                                            <input type="tel">-->
+                                            <!--                                            <input type="tel">-->
                                             <label class="input-field" th:text="${candidateInfo.mobileNumber}"></label>
                                         </div>
                                         <div class="col-6  input-block">
                                             <label class="name-field">Pan Number</label>
-<!--                                            <input type="text">-->
+                                            <!--                                            <input type="text">-->
                                             <label class="input-field" th:text="${candidateInfo.panNumber}"></label>
                                         </div>
                                         <div class="col-6  input-block">
                                             <label class="name-field">Aadhaar Number</label>
-<!--                                            <input type="text">-->
+                                            <!--                                            <input type="text">-->
                                             <label class="input-field" th:text="${candidateInfo.aadhaarNumber}"></label>
                                         </div>
                                         <div class="col-6  input-block">
                                             <label class="name-field">ModifiedBy</label>
-<!--                                            <input type="text">-->
+                                            <!--                                            <input type="text">-->
                                             <label class="input-field" th:text="${candidateInfo.modifiedBy}"></label>
                                         </div>
                                     </div>
@@ -405,185 +405,187 @@ outline: none;
                                 </form>
                             </div>
 
-                    </div>
-                    <button class="accordion">Education</button>
-                    <div class="panel">
-
-                        <div class="accordion-content" th:each="education :${candidateInfo.educationDetails}">
-                            <form>
-                                <div class="row">
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Course</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">CourseStarted</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">CourseCompleted</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Institution Name</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">University Name</label>
-                                        <input type="text">
-                                    </div>
-
-
-                                </div>
-
-                            </form>
                         </div>
+                        <button class="accordion">Education</button>
+                        <div class="panel">
 
-                    </div>
-                    <button class="accordion">Employment</button>
-                    <div class="panel">
+                            <div class="accordion-content" th:each="education :${candidateInfo.educationDetails}">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Course</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">CourseStarted</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">CourseCompleted</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Institution Name</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">University Name</label>
+                                            <input type="text">
+                                        </div>
 
-                        <div class="accordion-content">
-                            <form>
-                                <div class="row">
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Current Company</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Start Date</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">EndDate</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Employer Name</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Location</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Designation</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">OfferedCtc</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Variable PayIncluded</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
 
-                            </form>
+                                    </div>
+
+                                </form>
+                            </div>
+
                         </div>
+                        <button class="accordion">Employment</button>
+                        <div class="panel">
 
-                    </div>
-                    <button class="accordion">Passport Details</button>
-                    <div class="panel">
+                            <div class="accordion-content">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Current Company</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Start Date</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">EndDate</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Employer Name</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Location</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Designation</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">OfferedCtc</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Variable PayIncluded</label>
+                                            <input type="text">
+                                        </div>
+                                    </div>
 
-                        <div class="accordion-content">
-                            <form>
-                                <div class="row">
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Issued Date</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Expiry Date</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Issued Location</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Passport Number</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Holding Visa</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Visa Issued Country</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Visa Expiry Date</label>
-                                        <input type="text">
-                                    </div>
-                                </div>
+                                </form>
+                            </div>
 
-                            </form>
                         </div>
+                        <button class="accordion">Passport Details</button>
+                        <div class="panel">
 
-                    </div>
-                    <button class="accordion">Employment Offer</button>
-                    <div class="panel">
-
-                        <div class="accordion-content">
-                            <form>
-                                <div class="row" th:each="offer:${candidateInfo.employmentOffers}">
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Employer Name</label>
-                                        <label th:text="${offer.employerName}"></label>
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Offer Status</label>
-                                        <label th:text="${offer.offerStatus}"></label>
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Offer Issued</label>
-                                        <label th:text="${offer.offerIssued}"></label>
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Joining Date In Offer</label>
-                                        <label th:text="${offer.joiningDateInOffer}"></label>
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Place Of Reporting</label>
-                                        <label th:text="${offer.placeOfReporting}"></label>
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Confirmed Joining Date</label>
-                                        <label th:text="${offer.confirmedJoiningDate}"></label>
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Offered Ctc</label>
-                                        <label th:text="${offer.offeredCtc}"></label>
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Variable Pay Included</label>
-                                        <label th:text="${offer.variablePayIncluded}"></label>
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">Variable Ctc</label>
-                                        <label th:text="${offer.variableCtc}"></label>
-                                    </div>
-                                    <div class="col-6  input-block">
-                                        <label class="name-field">ReasonFor Rejection</label>
-                                        <label th:text="${offer.reasonForRejection}"></label>
+                            <div class="accordion-content">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Issued Date</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Expiry Date</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Issued Location</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Passport Number</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Holding Visa</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Visa Issued Country</label>
+                                            <input type="text">
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Visa Expiry Date</label>
+                                            <input type="text">
+                                        </div>
                                     </div>
 
-                                </div>
+                                </form>
+                            </div>
 
-                            </form>
                         </div>
+                        <button class="accordion">Employment Offer</button>
+                        <div class="panel">
 
+                            <div class="accordion-content">
+                                <form>
+                                    <div class="row" th:each="offer:${candidateInfo.employmentOffers}">
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Employer Name</label>
+                                            <label th:text="${offer.employerName}"></label>
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Offer Status</label>
+                                            <label th:text="${offer.offerStatus}"></label>
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Offer Issued</label>
+                                            <label th:text="${offer.offerIssued}"></label>
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Joining Date In Offer</label>
+                                            <label th:text="${offer.joiningDateInOffer}"></label>
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Place Of Reporting</label>
+                                            <label th:text="${offer.placeOfReporting}"></label>
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Confirmed Joining Date</label>
+                                            <label th:text="${offer.confirmedJoiningDate}"></label>
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Offered Ctc</label>
+                                            <label th:text="${offer.offeredCtc}"></label>
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Variable Pay Included</label>
+                                            <label th:text="${offer.variablePayIncluded}"></label>
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">Variable Ctc</label>
+                                            <label th:text="${offer.variableCtc}"></label>
+                                        </div>
+                                        <div class="col-6  input-block">
+                                            <label class="name-field">ReasonFor Rejection</label>
+                                            <label th:text="${offer.reasonForRejection}"></label>
+                                        </div>
+
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                        <div sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_USER')" class="view-user-block">
+                            <a th:href="@{/viewUsers}" class="add-btn">View Users</a>
+                        </div>
                     </div>
-                    <div sec:authorize="hasAnyAuthority('ROLE_ADMIN','ROLE_USER')" class="view-user-block">
-                        <a th:href="@{/viewUsers}" class="add-btn">View Users</a>
-                    </div>
+
                 </div>
+            </section>
+        </div>
 
-            </div>
-        </section>
         <script>
             var acc = document.getElementsByClassName("accordion");
             var i;
