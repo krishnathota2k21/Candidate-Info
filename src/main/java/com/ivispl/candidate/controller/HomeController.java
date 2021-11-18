@@ -37,6 +37,17 @@ public class HomeController {
         return "view-users";
     }
 
+    @GetMapping("/index")
+    public String index(Model model) {
+        //model.addAttribute("user", new User());
+        return "index";
+    }
+
+    @GetMapping("/addInformation")
+    public String addInformation(Model model) {
+        return "add-information";
+    }
+
     @GetMapping("/addUser")
     public String loadAddUserPage(Model model) {
         model.addAttribute("user", new User());
@@ -65,6 +76,7 @@ public class HomeController {
     public String viewLoginPage() {
         return "login";
     }
+
 
 
 }
