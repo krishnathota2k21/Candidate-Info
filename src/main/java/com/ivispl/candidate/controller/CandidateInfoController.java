@@ -75,4 +75,6 @@ public class CandidateInfoController {
         candidateInfoService.deleteCandidateInfo(id);
         return "";
     }
+
+
 }

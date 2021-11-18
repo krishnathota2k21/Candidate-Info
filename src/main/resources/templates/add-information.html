@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous" />
+    <style>
+         * {
+         -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+         -ms-box-sizing: border-box;
+         -o-box-sizing: border-box;
+         box-sizing: border-box;
+         }
+         body{
+         font-family: 'Roboto', sans-serif;
+         font-size:14px;
+         margin: 0;
+         padding: 0;
+         }
+         .container{
+         width: 1170px;
+         margin: 0 auto;
+         padding-right: 15px;
+         padding-left: 15px;
+         }
+         header{
+         background:#1b365d;
+         padding:10px 0;
+         }
+         .logo{
+         float:left;
+         }
+         .details-info{
+         float: right;
+         }
+         .clearfix:after {
+         content: "";
+         display: block;
+         clear: both;
+         visibility: hidden;
+         line-height: 0;
+         height: 0;
+         }
+         .logo a {
+         color: #fff;
+         font-size: 30px;
+         font-weight: 400;
+         text-decoration: none;
+         display: inline-block;
+         }
+         .details-info form, .user-info {
+         display: inline-block;
+         vertical-align: middle;
+         }
+         .logout-btn{
+         color:#000;
+         }
+         .user-info {
+         color: #fff;
+         padding-right: 15px;
+         }
+         .logout-btn {
+         background: #fff;
+         color: #1b365d;
+         font-size: 14px;
+         border-radius: 25px;
+         min-width: 120px;
+         padding: 6px;
+         border: solid 2px transparent;
+         font-weight: 500;
+         cursor: pointer;
+         }
+         .logout-btn:hover, .logout-btn:focus {
+         background: none;
+         border: solid 2px #fff;
+         color: #fff;
+         }
+         .search-section {
+         background: #eae9e9;
+         text-align: center;
+         padding: 10px 0;
+         }
+         .middle-content{
+         height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         }
+         .middle-box{
+         }
+         .add-btn {
+         background: #1b365d;
+         color: #fff;
+         font-size: 14px;
+         border-radius: 25px;
+         min-width: 150px;
+         padding: 12px;
+         border: solid 2px #1b365d;
+         font-weight: 500;
+         cursor: pointer;
+         display: inline-block;
+         text-decoration: none;
+         font-weight: 400;
+         text-align: center;
+         }
+         .add-btn:hover, .add-btn:focus{
+         background:#fff;
+         color: #1b365d;
+         outline: none;
+         text-decoration: none;
+         }
+         .accordion {
+         background-color: #eae9e9;
+         color: #1b365d;
+         cursor: pointer;
+         padding: 10px 20px;
+         width: 100%;
+         text-align: left;
+         border: none;
+         outline: none;
+         transition: 0.4s;
+         font-size: 16px;
+         border: solid 1px #dee2e6;
+         border-radius: 5px;
+         margin: 0 0 5px;
+         font-weight: 500;
+         }
+         .active, .accordion:hover, .accordion:focus {
+         color: #fff;
+         text-align: left;
+         background-color:#1b365d;
+         border: solid 1px #1b365d;
+         outline: none;
+         }
+         .panel {
+         padding: 0 25px;
+         background-color: white;
+         display: none;
+         overflow: hidden;
+         border: solid 1px #dee2e6;
+         border-top: none;
+         margin-top: -10px;
+         margin-bottom: 10px;
+         }
+         .accordion:after {
+         content: "\f067";
+         font-family: 'FontAwesome';
+         font-size: 13px;
+         color:#1b365d;
+         float: right;
+         margin-left: 5px;
+         padding-top: 1px;
+         }
+         .active:after {
+         content: "\f068";
+         font-family: 'FontAwesome';
+         color:#fff;
+         }
+         .accordion:hover:after {
+         color: #fff;
+         }
+         .accordion-content {
+         padding: 20px 0px;
+         }
+         .input-block input {
+         width: 100%;
+         display: block;
+         color: #272727;
+         font-size: 14px;
+         padding: 0 10px;
+         border-radius: 5px;
+         border: 1px solid #d2d8dd;
+         height: 28px;
+         background:#fff;
+         outline: none;
+         }
+         .input-block input:hover, .input-block input:focus{
+         background:#fff;
+         border: 1px solid #a8aaae;
+         }
+         .row {
+         display: -ms-flexbox;
+         display: flex;
+         -ms-flex-wrap: wrap;
+         flex-wrap: wrap;
+         margin-right: -15px;
+         margin-left: -15px;
+         }
+         .col {
+         -ms-flex-preferred-size: 0;
+         flex-basis: 0;
+         -ms-flex-positive: 1;
+         flex-grow: 1;
+         max-width: 100%;
+         padding:0 15px;
+         }
+         .main-block {
+         border: solid 1px #dee2e6;
+         padding: 30px 20px;
+         border-radius: 5px;
+         margin: 10px 0;
+         background: #fff;
+         }
+         .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+         padding:0 15px;
+         }
+         .col-1 {width: 8.33%;}
+         .col-2 {width: 16.66%;}
+         .col-3 {width: 25%;}
+         .col-4 {width: 33.33%;}
+         .col-5 {width: 41.66%;}
+         .col-6 {width: 50%;}
+         .col-7 {width: 58.33%;}
+         .col-8 {width: 66.66%;}
+         .col-9 {width: 75%;}
+         .col-10 {width: 83.33%;}
+         .col-11 {width: 91.66%;}
+         .col-12 {width: 100%;}
+         .input-block {
+         margin: 0 0 15px;
+         display: -webkit-box;
+         display: -moz-box;
+         display: -ms-flexbox;
+         display: -webkit-flex;
+         display: flex;
+         align-items:center;
+         }
+         .name-field {
+         font-size: 14px;
+         margin: 0 0 5px;
+         color: #717a82;
+         width: 250px;
+         padding-right: 15px;
+         display: -webkit-box;
+         display: -moz-box;
+         display: -ms-flexbox;
+         display: -webkit-flex;
+         display: flex;
+         }
+         .output-field {
+         color: #333;
+         }
+         .view-user-block {
+         margin: 25px 0 0;
+         text-align: center;
+         }
+         .Search-block{
+         position: relative;
+         }
+         .search-bar {
+         background-color: #fff;
+         border: none;
+         width: 100%;
+         font-size: 13px;
+         color: #1b365d;
+         height: 35px;
+         border-radius: 50px;
+         position: relative;
+         padding: 0 45px 0 20px;
+         outline: none;
+         text-transform: uppercase;
+         }
+         .sub-btn {
+         position: absolute;
+         top: 0;
+         right: 0;
+         border: none;
+         color: #fff;
+         cursor: pointer;
+         background: #1b365d;
+         bottom: 0;
+         width: 45px;
+         border-top-right-radius: 100px;
+         border-bottom-right-radius: 100px;
+         }
+         .input-field{
+         width: 100%;
+         display: block;
+         color: #272727;
+         font-size: 14px;
+         padding: 5px 10px;
+         border-radius: 5px;
+         border: 1px solid #d2d8dd;
+         height: 28px;
+         background: #fff;
+         outline: none;
+         }
+         .accordion-content.active {
+         background-color: transparent;
+         border: none;
+         }
+         .message-sec {
+         padding: 70px 0 0;
+         text-align: center;
+         }
+         .message-sec h1 {
+         font-size: 32px;
+         text-transform: capitalize;
+         text-align: center;
+         color: #1b365d;
+         font-weight: 600;
+         margin: 0 0 15px;
+         }
+         .message-sec p {
+         font-size: 20px;
+         text-align: center;
+         color: #b2b2b2;
+         text-transform: capitalize;
+         margin: 0 0 30px;
+         }
+         .message-sec a{
+
+         }
+         .back-btn {
+         color: #1b365d;
+         width: 65px;
+         background: #fff;
+         display: block;
+         border: solid 2px #dee2e6;
+         border-radius: 25px;
+         text-align: center;
+         padding: 3px;
+         z-index: 9;
+         text-decoration: none;
+         margin: 35px 0 0;
+         font-size: 13px;
+         }
+         .back-btn:hover, .back-btn:focus {
+         background: #dee2e6;
+         text-decoration: none;
+         color: #1b365d;
+         }
+         .back_block:after {
+             display: block;
+             content: "";
+             clear: both;
+         }
+         .back_block .back-btn{
+            float: left;
+         }
+         .back_block  .edit{
+            float: right;
+         }
+      </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="top-header clearfix">
+            <div class="logo"><a th:href="@{/index}">Logo</a></div>
+            <div class="details-info">
+                <div sec:authorize="isAuthenticated()" class="user-info">
+                    Welcome <span style="align:center" sec:authentication="name" > Username</span>
+                </div>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Logout" class="logout-btn" />
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<section>
+    <div class="container">
+        <div class="back_block">
+        <a th:href="@{/index}" class="back-btn">Back</a>
+        <a href="javascript:void(0);" class="back-btn edit">Edit</a>
+        </div>
+        <div class="main-block">
+            <button class="accordion active">Candidate Information</button>
+            <div class="panel" style="display:block;">
+                <div class="accordion-content">
+                    <form>
+                        <div class="row">
+                            <div class="col-6  input-block">
+                                <label class="name-field">First Name</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field" >Last Name</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Email</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Mobile Number</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Pan Number</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Aadhaar Number</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Modified By</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <button class="accordion">Education</button>
+            <div class="panel">
+                <div class="accordion-content">
+                    <form>
+                        <div class="row">
+                            <div class="col-6  input-block">
+                                <label class="name-field">Course</label>
+                                <input type="text">
+
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Course Started</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Course Completed</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Institution Name</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">University Name</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <button class="accordion">Employment</button>
+            <div class="panel">
+                <div class="accordion-content">
+                    <form>
+                        <div class="row">
+                            <div class="col-6  input-block">
+                                <label class="name-field">Employer Name</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Designation</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Start Date</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">End Date</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Current Company</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Location</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Offered Ctc</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Variable PayIncluded</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <button class="accordion">Passport Details</button>
+            <div class="panel">
+                <div class="accordion-content">
+                    <form>
+                        <div class="row">
+                            <div class="col-6  input-block">
+                                <label class="name-field">Passport Number</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Issued Location</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Issued Date</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Expiry Date</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Holding Visa</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Visa Expiry Date</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Visa Issued Country</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <button class="accordion">Employment Offer</button>
+            <div class="panel">
+                <div class="accordion-content">
+                    <form>
+                        <div class="row">
+                            <div class="col-6  input-block">
+                                <label class="name-field">Employer Name</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Offer Status</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Offer Issued</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Joining Date In Offer</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Place Of Reporting</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Confirmed Joining Date</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Offered Ctc</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Variable Pay Included</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Variable Ctc</label>
+                                <input type="text">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">ReasonFor Rejection</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="view-user-block">
+                <a href="#" class="add-btn">Submit</a>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+         var acc = document.getElementsByClassName("accordion");
+         var i;
+
+         for (i = 0; i < acc.length; i++) {
+           acc[i].addEventListener("click", function() {
+             this.classList.toggle("active");
+             var panel = this.nextElementSibling;
+             console.log(panel)
+             if (panel.style.display === "block") {
+               panel.style.display = "none";
+             } else {
+               panel.style.display = "block";
+             }
+           });
+         }
+      </script>
+</body>
+</html>
