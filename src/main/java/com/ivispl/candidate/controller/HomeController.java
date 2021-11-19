@@ -45,6 +45,7 @@ public class HomeController {
 
     @GetMapping("/addInformation")
     public String addInformation(Model model) {
+        //model.addAttribute("designationList", designationList);
         return "add-information";
     }
 
@@ -79,4 +80,11 @@ public class HomeController {
 
 
 
+
+
+
+
+
 }
+
+
