@@ -48,7 +48,7 @@ public class RegistrationController {
      */
     @GetMapping
     public String loadRegistrationView(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDto());
         return "registration";
     }
 
