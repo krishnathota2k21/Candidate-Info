@@ -76,7 +76,11 @@ public class CandidateInfoController {
         return "";
     }
 
-
+    @GetMapping("/addCandidateInfo")
+    public String addInformation(Model model) {
+        model.addAttribute("candidateInfo", new CandidateInfoDto());
+        return "add-information";
+    }
 
 
 }

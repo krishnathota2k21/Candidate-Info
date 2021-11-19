@@ -12,4 +12,7 @@ public class CandidateInfoApplication {
 		SpringApplication.run(CandidateInfoApplication.class, args);
 	}
 
+
 }
+
+
