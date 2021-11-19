@@ -346,6 +346,75 @@
          .back_block  .edit{
             float: right;
          }
+         select {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                -ms-appearance: none;
+                appearance: none;
+                outline: 0;
+                background: #fff;
+                background-image: none;
+                width: 100%;
+                border: none;
+
+
+            }
+
+            .select {
+                position: relative;
+                display: block;
+                width: 100%;
+                height: 28px;
+                line-height: 28px;
+                background: #fff;
+                overflow: hidden;
+                border-radius:8px;
+                border:solid 1px #ccc;
+                color: #272727;
+    font-size: 14px;
+
+
+
+            }
+            .select select {
+                padding: 0 10px;
+            }
+            #slct {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                color:#928d8dcc;
+                cursor: pointer;
+                font-size: 14px;
+                border: none;
+                padding:0 15px;
+            }
+            select::-ms-expand {
+                display: none;
+            }
+            .select::after {
+                content: "\f107";
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                padding: 0 12px;
+                background: #fff;
+                pointer-events: none;
+                color: #928d8dcc;
+                font-family: 'FontAwesome';
+            }
+            .select:hover::after {
+                color: #000;
+            }
+
+
+            .select::after {
+                -webkit-transition: .25s all ease;
+                -o-transition: .25s all ease;
+                transition: .25s all ease;
+            }
       </style>
 </head>
 <body>
@@ -414,16 +483,7 @@
                     <form>
                         <div class="row">
                             <div class="col-6  input-block">
-                                <label class="name-field">Course</label>
-                                <input type="text">
-
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Course Started</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Course Completed</label>
+                                <label class="name-field">University Name</label>
                                 <input type="text">
                             </div>
                             <div class="col-6  input-block">
@@ -431,9 +491,19 @@
                                 <input type="text">
                             </div>
                             <div class="col-6  input-block">
-                                <label class="name-field">University Name</label>
+                                <label class="name-field" name="games">Course</label>
                                 <input type="text">
                             </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Course Started</label>
+                                <input type="date" th:value="${startDate}">
+                            </div>
+                            <div class="col-6  input-block">
+                                <label class="name-field">Course Completed</label>
+                                <input type="date" th:value="${startDate}">
+                            </div>
+
+
                         </div>
                     </form>
                 </div>
@@ -453,11 +523,11 @@
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Start Date</label>
-                                <input type="text">
+                                <input type="date" th:value="${startDate}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">End Date</label>
-                                <input type="text">
+                                <input type="date" th:value="${startDate}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Current Company</label>
@@ -494,11 +564,11 @@
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Issued Date</label>
-                                <input type="text">
+                                <input type="date" th:value="${startDate}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Expiry Date</label>
-                                <input type="text">
+                                <input type="date" th:value="${startDate}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Holding Visa</label>
@@ -506,7 +576,7 @@
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Visa Expiry Date</label>
-                                <input type="text">
+                                <input type="date" th:value="${startDate}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Visa Issued Country</label>
@@ -535,7 +605,7 @@
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Joining Date In Offer</label>
-                                <input type="text">
+                                <input type="date" th:value="${startDate}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Place Of Reporting</label>
@@ -543,7 +613,7 @@
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Confirmed Joining Date</label>
-                                <input type="text">
+                                <input type="date" th:value="${startDate}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Offered Ctc</label>
@@ -558,7 +628,7 @@
                                 <input type="text">
                             </div>
                             <div class="col-6  input-block">
-                                <label class="name-field">ReasonFor Rejection</label>
+                                <label class="name-field">Reason For Rejection</label>
                                 <input type="text">
                             </div>
                         </div>
