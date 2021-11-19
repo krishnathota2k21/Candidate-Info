@@ -34,7 +34,7 @@ public class HomeController {
         List<User> users = userRepository.findAll();
         List<UserDto> userDtos = users.stream().map(user -> UserDto.builder().id(user.getId()).email(user.getEmail()).name(user.getName()).build()).collect(Collectors.toList());
         model.addAttribute("users", userDtos);
-        return "view-users";
+        return "user/view-users";
     }
 
     @GetMapping("/index")
@@ -43,16 +43,10 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/addInformation")
-    public String addInformation(Model model) {
-        //model.addAttribute("designationList", designationList);
-        return "add-information";
-    }
-
     @GetMapping("/addUser")
     public String loadAddUserPage(Model model) {
         model.addAttribute("user", new User());
-        return "add-user";
+        return "user/add-user";
     }
 
     @PostMapping("/save")
@@ -77,13 +71,6 @@ public class HomeController {
     public String viewLoginPage() {
         return "login";
     }
-
-
-
-
-
-
-
 
 }
 
