@@ -44,18 +44,16 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/addUs0er")
+    @GetMapping("/addUser")
     public String loadAddUserPage(Model model) {
         model.addAttribute("user", new User());
         return "user/add-user";
     }
 
     @PostMapping("/save")
-    public String saveUser(@ModelAttribute UserDto userDto, Model model) throws Exception
-    {
+    public String saveUser(@ModelAttribute UserDto userDto, Model model) throws Exception {
         Optional<User> optionalUser = userRepository.findByEmail(userDto.getEmail());
-        if (optionalUser.isPresent())
-        {
+        if (optionalUser.isPresent()){
             log.error("{} is already exist.", userDto.getEmail());
             model.addAttribute("errorMessage", "email address is already registered.");
             return "redirect:viewUsers";
