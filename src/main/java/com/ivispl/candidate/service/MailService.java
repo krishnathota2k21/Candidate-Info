@@ -30,9 +30,9 @@ public class MailService {
         SimpleMailMessage mail = new SimpleMailMessage();
 //        mail.setFrom("");
 //        mail.setTo("krishna.thota2k21@gmail.com");
-        mail.setFrom(""); // read it from properties file.
+        mail.setFrom("no-reply@ivispl.com"); // read it from properties file.
         mail.setTo(email);
-        mail.setSubject("Testing mailing API.");
+        mail.setSubject("Account activation - IVISPL.");
         mail.setText("Hurray! you have done that.");
 
         javaMailSender.send(mail);

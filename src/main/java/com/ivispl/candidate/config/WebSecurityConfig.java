@@ -49,6 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/register*").permitAll()
                 .antMatchers("/").hasAnyAuthority(ROLE_USER, ROLE_ADMIN)
                 .antMatchers("/viewUsers").hasAnyAuthority(ROLE_USER, ROLE_ADMIN)
                 .antMatchers("/addUser").hasAuthority(ROLE_ADMIN)
@@ -65,8 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/error");
     }
 
-    @Override
+    /*@Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/register");
-    }
+    }*/
 }
