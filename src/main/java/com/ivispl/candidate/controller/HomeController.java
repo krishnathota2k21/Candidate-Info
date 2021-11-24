@@ -5,6 +5,7 @@ import com.ivispl.candidate.entity.user.Role;
 import com.ivispl.candidate.entity.user.User;
 import com.ivispl.candidate.reposiroty.RoleRepository;
 import com.ivispl.candidate.reposiroty.UserRepository;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,16 +44,18 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/addUser")
+    @GetMapping("/addUs0er")
     public String loadAddUserPage(Model model) {
         model.addAttribute("user", new User());
         return "user/add-user";
     }
 
     @PostMapping("/save")
-    public String saveUser(@ModelAttribute UserDto userDto, Model model) throws Exception {
+    public String saveUser(@ModelAttribute UserDto userDto, Model model) throws Exception
+    {
         Optional<User> optionalUser = userRepository.findByEmail(userDto.getEmail());
-        if (optionalUser.isPresent()){
+        if (optionalUser.isPresent())
+        {
             log.error("{} is already exist.", userDto.getEmail());
             model.addAttribute("errorMessage", "email address is already registered.");
             return "redirect:viewUsers";
@@ -71,7 +74,4 @@ public class HomeController {
     public String viewLoginPage() {
         return "login";
     }
-
 }
-
-

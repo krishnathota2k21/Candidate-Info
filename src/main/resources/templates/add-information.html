@@ -208,6 +208,7 @@
          }
          .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
          padding:0 15px;
+         float: left;
          }
          .col-1 {width: 8.33%;}
          .col-2 {width: 16.66%;}
@@ -314,7 +315,6 @@
          margin: 0 0 30px;
          }
          .message-sec a{
-
          }
          .back-btn {
          color: #1b365d;
@@ -335,86 +335,63 @@
          text-decoration: none;
          color: #1b365d;
          }
-         .back_block:after {
-             display: block;
-             content: "";
-             clear: both;
+         .back_block:after, .show-content:after,  .expand-block:after, .show-content .card-body:after {
+         display: block;
+         content: "";
+         clear: both;
          }
          .back_block .back-btn{
-            float: left;
+         float: left;
          }
          .back_block  .edit{
-            float: right;
+         float: right;
          }
          select {
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                -ms-appearance: none;
-                appearance: none;
-                outline: 0;
-                background: #fff;
-                background-image: none;
-                width: 100%;
-                border: none;
-
-
-            }
-
-            .select {
-                position: relative;
-                display: block;
-                width: 100%;
-                height: 28px;
-                line-height: 28px;
-                background: #fff;
-                overflow: hidden;
-                border-radius:8px;
-                border:solid 1px #ccc;
-                color: #272727;
-    font-size: 14px;
-
-
-
-            }
-            .select select {
-                padding: 0 10px;
-            }
-            #slct {
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                color:#928d8dcc;
-                cursor: pointer;
-                font-size: 14px;
-                border: none;
-                padding:0 15px;
-            }
-            select::-ms-expand {
-                display: none;
-            }
-            .select::after {
-                content: "\f107";
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                padding: 0 12px;
-                background: #fff;
-                pointer-events: none;
-                color: #928d8dcc;
-                font-family: 'FontAwesome';
-            }
-            .select:hover::after {
-                color: #000;
-            }
-
-
-            .select::after {
-                -webkit-transition: .25s all ease;
-                -o-transition: .25s all ease;
-                transition: .25s all ease;
-            }
+         -webkit-appearance: none;
+         -moz-appearance: none;
+         -ms-appearance: none;
+         appearance: none;
+         outline: 0;
+         background: #fff;
+         background-image: none;
+         width: 100%;
+         border: none;
+         }
+         .expand-btn {
+         float: right;
+         color: #1b365d;
+         background: #fff;
+         display: block;
+         border: solid 2px #dee2e6;
+         border-radius: 25px;
+         text-align: center;
+         padding: 5px 15px 5px 25px;
+         font-size: 13px;
+         position: relative;
+         }
+         .show-content .card{
+         display: block;
+         margin: 5px 0 0;
+         }
+         .expand-btn:after {
+         content: "\f067";
+         font-family: 'FontAwesome';
+         font-size: 11px;
+         color: #1b365d;
+         position: absolute;
+         left: 11px;
+         top: 7px;
+         }
+         .expand-block [aria-expanded="true"]:after {
+         content: "\f068";
+         color: #1b365d;
+         }
+         .expand-btn:hover, .expand-btn:focus, .expand-block [aria-expanded="true"]{
+         background: #dee2e6;
+         text-decoration: none;
+         color: #1b365d;
+         box-shadow: none;
+         }
       </style>
 </head>
 <body>
@@ -436,211 +413,232 @@
 <section>
     <div class="container">
         <div class="back_block">
-        <a th:href="@{/index}" class="back-btn">Back</a>
-        <a href="javascript:void(0);" class="back-btn edit">Edit</a>
+            <a th:href="@{/index}" class="back-btn">Back</a>
+            <a href="javascript:void(0);" class="back-btn edit">Edit</a>
         </div>
         <div class="main-block">
-            <button class="accordion active">Candidate Information</button>
-            <div class="panel" style="display:block;">
-                <div class="accordion-content">
-                    <form>
+            <form action="#" th:action="@{/candidate/addCandidateInfo}" method="post" th:object="${candidateInfo}">
+                <button class="accordion active">Candidate Information</button>
+                <div class="panel" style="display:block;">
+                    <div class="accordion-content">
                         <div class="row">
                             <div class="col-6  input-block">
                                 <label class="name-field">First Name</label>
-                                <input type="text">
+                                <input type="text" th:field="*{firstName}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field" >Last Name</label>
-                                <input type="text">
+                                <input type="text" th:field="*{lastName}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Email</label>
-                                <input type="text">
+                                <input type="text" th:field="*{email}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Mobile Number</label>
-                                <input type="text">
+                                <input type="text" th:field="*{mobileNumber}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Pan Number</label>
-                                <input type="text">
+                                <input type="text" th:text="*{panNumber}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Aadhaar Number</label>
-                                <input type="text">
+                                <input type="text" th:text="*{aadhaarNumber}">
                             </div>
                             <div class="col-6  input-block">
                                 <label class="name-field">Modified By</label>
-                                <input type="text">
+                                <input type="text" th:text="*{modifiedBy}">
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-            <button class="accordion">Education</button>
-            <div class="panel">
-                <div class="accordion-content">
-                    <form>
-                        <div class="row">
-                            <div class="col-6  input-block">
-                                <label class="name-field">University Name</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Institution Name</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field" name="games">Course</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Course Started</label>
-                                <input type="date" th:value="${startDate}">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Course Completed</label>
-                                <input type="date" th:value="${startDate}">
-                            </div>
+<!--                <button class="accordion">Education</button>-->
+<!--                <div class="panel">-->
+<!--                    <div class="accordion-content">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">University Name</label>-->
+<!--                                <input type="text" th:text="*{universityName}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Institution Name</label>-->
+<!--                                <input type="text" th:text="*{institutionName}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field" name="games">Course</label>-->
+<!--                                <input type="text" th:text="*{course}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Course Started</label>-->
+<!--                                <input type="date" th:value="${startDate}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Course Completed</label>-->
+<!--                                <input type="date" th:value="${startDate}">-->
+<!--                            </div>-->
+<!--                            <div class="col-12 show-content">-->
+<!--                                <div class="expand-block">-->
+<!--                                    <button class="btn expand-btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">-->
+<!--                                        Advanced-->
+<!--                                    </button>-->
+<!--                                </div>-->
+<!--                                <div class="collapse" id="collapseExample">-->
+<!--                                    <div class="card card-body">-->
 
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <button class="accordion">Employment</button>
-            <div class="panel">
-                <div class="accordion-content">
-                    <form>
-                        <div class="row">
-                            <div class="col-6  input-block">
-                                <label class="name-field">Employer Name</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Designation</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Start Date</label>
-                                <input type="date" th:value="${startDate}">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">End Date</label>
-                                <input type="date" th:value="${startDate}">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Current Company</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Location</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Offered Ctc</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Variable PayIncluded</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <button class="accordion">Passport Details</button>
-            <div class="panel">
-                <div class="accordion-content">
-                    <form>
-                        <div class="row">
-                            <div class="col-6  input-block">
-                                <label class="name-field">Passport Number</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Issued Location</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Issued Date</label>
-                                <input type="date" th:value="${startDate}">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Expiry Date</label>
-                                <input type="date" th:value="${startDate}">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Holding Visa</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Visa Expiry Date</label>
-                                <input type="date" th:value="${startDate}">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Visa Issued Country</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <button class="accordion">Employment Offer</button>
-            <div class="panel">
-                <div class="accordion-content">
-                    <form>
-                        <div class="row">
-                            <div class="col-6  input-block">
-                                <label class="name-field">Employer Name</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Offer Status</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Offer Issued</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Joining Date In Offer</label>
-                                <input type="date" th:value="${startDate}">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Place Of Reporting</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Confirmed Joining Date</label>
-                                <input type="date" th:value="${startDate}">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Offered Ctc</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Variable Pay Included</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Variable Ctc</label>
-                                <input type="text">
-                            </div>
-                            <div class="col-6  input-block">
-                                <label class="name-field">Reason For Rejection</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="view-user-block">
-                <a href="#" class="add-btn">Submit</a>
-            </div>
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <button class="accordion">Employment</button>-->
+<!--                <div class="panel">-->
+<!--                    <div class="accordion-content">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Employer Name</label>-->
+<!--                                <input type="text">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Designation</label>-->
+<!--                                <input type="text">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="n<div class="col-6  input-block">-->
+<!--                                <label class="name-field">University Name</label>-->
+<!--                                <input type="text" th:text="*{universityName}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Institution Name</label>-->
+<!--                                <input type="text" th:text="*{institutionName}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field" name="games">Course</label>-->
+<!--                                <input type="text" th:text="*{course}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Course Started</label>-->
+<!--                                <input type="date" th:value="${startDate}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Course Completed</label>-->
+<!--                                <input type="date" th:value="${startDate}">-->
+<!--                            </div>ame-field">Start Date</label>-->
+<!--                                <input type="date" th:value="${startDate}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">End Date</label>-->
+<!--                                <input type="date" th:value="${startDate}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Current Company</label>-->
+<!--                                <input type="text">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Location</label>-->
+<!--                                <input type="text">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Offered Ctc</label>-->
+<!--                                <input type="text">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Variable PayIncluded</label>-->
+<!--                                <input type="text">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <button class="accordion">Passport Details</button>-->
+<!--                <div class="panel">-->
+<!--                    <div class="accordion-content">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Passport Number</label>-->
+<!--                                <input type="text" th:text="*{passportNumber}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Issued Location</label>-->
+<!--                                <input type="text" th:text="*{issuedLocation}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Issued Date</label>-->
+<!--                                <input type="date" th:value="${startDate}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Expiry Date</label>-->
+<!--                                <input type="date" th:value="*{startDate}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Holding Visa</label>-->
+<!--                                <input type="text" th:text="*{holdingVisa}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Visa Expiry Date</label>-->
+<!--                                <input type="date" th:value="${startDate}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Visa Issued Country</label>-->
+<!--                                <input type="text" th:text="*{visaIssuedCountry}">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <button class="accordion">Employment Offer</button>-->
+<!--                <div class="panel">-->
+<!--                    <div class="accordion-content">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Employer Name</label>-->
+<!--                                <input type="text" th:text="*{employerName}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Offer Status</label>-->
+<!--                                <input type="text" th:text="*{offerStatus}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Offer Issued</label>-->
+<!--                                <input type="text" th:text="*{offerIssued}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Joining Date In Offer</label>-->
+<!--                                <input type="date" th:value="${startDate}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Place Of Reporting</label>-->
+<!--                                <input type="text" th:text="*{placeOfReporting}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Confirmed Joining Date</label>-->
+<!--                                <input type="date" th:value="${startDate}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Offered Ctc</label>-->
+<!--                                <input type="text" th:text="*{offeredCtc}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Variable Pay Included</label>-->
+<!--                                <input type="text" th:text="*{variablePayIncluded}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Variable Ctc</label>-->
+<!--                                <input type="text" th:text="*{variableCtc}">-->
+<!--                            </div>-->
+<!--                            <div class="col-6  input-block">-->
+<!--                                <label class="name-field">Reason For Rejection</label>-->
+<!--                                <input type="text" th:text="*{reasonForRejection}">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="view-user-block"><button type="submit" class="add-btn">Submit</button></div>
+            </form>
         </div>
     </div>
 </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.usebootstrap.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script>
          var acc = document.getElementsByClassName("accordion");
          var i;
@@ -657,6 +655,9 @@
              }
            });
          }
+         $('#myCollapsible').collapse({
+         toggle: false
+         })
       </script>
 </body>
 </html>
