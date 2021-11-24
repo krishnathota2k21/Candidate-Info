@@ -1,4 +1,5 @@
 package com.ivispl.candidate.service;
+
 import com.ivispl.candidate.dto.CandidateInfoDto;
 import com.ivispl.candidate.entity.candidate.CandidateInfo;
 import com.ivispl.candidate.error.CandidateNotFoundException;
@@ -7,7 +8,6 @@ import com.ivispl.candidate.reposiroty.CandidateInfoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,11 +20,6 @@ public class CandidateInfoService {
     public CandidateInfoService(CandidateInfoRepository candidateInfoRepository, CandidateInfoMapper candidateInfoMapper) {
         this.candidateInfoRepository = candidateInfoRepository;
         this.candidateInfoMapper = candidateInfoMapper;
-    }
-
-    public static List<CandidateInfo> getCandidate()
-    {
-     return getCandidate();
     }
 
 
